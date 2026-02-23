@@ -1,0 +1,98 @@
+package org.joda.time;
+
+import java.io.Serializable;
+import org.joda.convert.FromString;
+import org.joda.time.base.AbstractInstant;
+import org.joda.time.chrono.ISOChronology;
+import org.joda.time.convert.ConverterManager;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+public final class Instant extends AbstractInstant implements ReadableInstant, Serializable {
+    private static final long serialVersionUID = 3299096530934209741L;
+    private final long iMillis;
+
+    public Instant() {
+        this.iMillis = DateTimeUtils.currentTimeMillis();
+    }
+
+    public static Instant now() {
+        return new Instant();
+    }
+
+    @FromString
+    public static Instant parse(String str) {
+        return parse(str, ISODateTimeFormat.dateTimeParser());
+    }
+
+    public Chronology getChronology() {
+        return ISOChronology.getInstanceUTC();
+    }
+
+    public long getMillis() {
+        return this.iMillis;
+    }
+
+    public Instant minus(long j) {
+        return withDurationAdded(j, -1);
+    }
+
+    public Instant plus(long j) {
+        return withDurationAdded(j, 1);
+    }
+
+    public DateTime toDateTime() {
+        return new DateTime(getMillis(), ISOChronology.getInstance());
+    }
+
+    @Deprecated
+    public DateTime toDateTimeISO() {
+        return toDateTime();
+    }
+
+    public Instant toInstant() {
+        return this;
+    }
+
+    public MutableDateTime toMutableDateTime() {
+        return new MutableDateTime(getMillis(), ISOChronology.getInstance());
+    }
+
+    @Deprecated
+    public MutableDateTime toMutableDateTimeISO() {
+        return toMutableDateTime();
+    }
+
+    public Instant withDurationAdded(long j, int i) {
+        return (j == 0 || i == 0) ? this : withMillis(getChronology().add(getMillis(), j, i));
+    }
+
+    public Instant withMillis(long j) {
+        return j == this.iMillis ? this : new Instant(j);
+    }
+
+    public Instant(long j) {
+        this.iMillis = j;
+    }
+
+    public static Instant parse(String str, DateTimeFormatter dateTimeFormatter) {
+        return dateTimeFormatter.parseDateTime(str).toInstant();
+    }
+
+    public Instant minus(ReadableDuration readableDuration) {
+        return withDurationAdded(readableDuration, -1);
+    }
+
+    public Instant plus(ReadableDuration readableDuration) {
+        return withDurationAdded(readableDuration, 1);
+    }
+
+    public Instant withDurationAdded(ReadableDuration readableDuration, int i) {
+        return (readableDuration == null || i == 0) ? this : withDurationAdded(readableDuration.getMillis(), i);
+    }
+
+    public Instant(Object obj) {
+        this.iMillis = ConverterManager.getInstance().getInstantConverter(obj).getInstantMillis(obj, ISOChronology.getInstanceUTC());
+    }
+}

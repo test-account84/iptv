@@ -1,0 +1,18 @@
+package x6;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes.dex */
+public enum f {
+    ERROR_CORRECTION,
+    CHARACTER_SET,
+    DATA_MATRIX_SHAPE,
+    MIN_SIZE,
+    MAX_SIZE,
+    MARGIN,
+    PDF417_COMPACT,
+    PDF417_COMPACTION,
+    PDF417_DIMENSIONS,
+    AZTEC_LAYERS,
+    QR_VERSION,
+    QR_MASK_PATTERN,
+    GS1_FORMAT
+}

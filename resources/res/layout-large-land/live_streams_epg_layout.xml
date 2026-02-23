@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/ll_main_layout"
+    android:tag="cards main container"
+    android:background="@drawable/selector_checkbox"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/rl_archive_layout"
+        android:paddingBottom="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+        <TextView
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/tv_archieve_text"
+            android:layout_gravity="left"
+            android:id="@+id/tv_channel_name"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="This is program name"
+            android:layout_marginStart="15dp"/>
+        <ImageView
+            android:id="@+id/iv_archive_clock"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/tv_arch"
+            android:layout_below="@+id/tv_channel_name"
+            android:layout_marginStart="18dp"/>
+        <TextView
+            android:textSize="17dp"
+            android:textColor="@color/tv_archieve_text"
+            android:layout_gravity="left"
+            android:id="@+id/tv_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="20:10 - 30:30"
+            android:layout_below="@+id/tv_channel_name"
+            android:layout_marginStart="25dp"
+            android:layout_alignStart="@+id/iv_archive_clock"/>
+        <TextView
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:textColor="#08b461"
+            android:id="@+id/tv_now_playing"
+            android:paddingTop="10dp"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"/>
+        <View
+            android:background="#792d2a2a"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"/>
+    </RelativeLayout>
+</LinearLayout>

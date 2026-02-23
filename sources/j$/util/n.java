@@ -1,0 +1,10 @@
+package j$.util;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes2.dex */
+public interface N extends Spliterator {
+    void forEachRemaining(Object obj);
+
+    boolean tryAdvance(Object obj);
+
+    N trySplit();
+}

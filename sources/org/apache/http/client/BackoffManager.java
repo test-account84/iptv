@@ -1,0 +1,10 @@
+package org.apache.http.client;
+
+import org.apache.http.conn.routing.HttpRoute;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+public interface BackoffManager {
+    void backOff(HttpRoute httpRoute);
+
+    void probe(HttpRoute httpRoute);
+}

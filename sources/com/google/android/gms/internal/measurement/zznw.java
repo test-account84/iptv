@@ -1,0 +1,10 @@
+package com.google.android.gms.internal.measurement;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes3.dex */
+abstract class zznw {
+    public abstract int zza(int i, byte[] bArr, int i2, int i3);
+
+    public final boolean zzb(byte[] bArr, int i, int i2) {
+        return zza(0, bArr, i, i2) == 0;
+    }
+}

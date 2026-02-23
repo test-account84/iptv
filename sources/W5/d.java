@@ -1,0 +1,8 @@
+package w5;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes3.dex */
+public abstract class d extends e {
+    public static int a(float f) {
+        return Float.valueOf(f).hashCode();
+    }
+}

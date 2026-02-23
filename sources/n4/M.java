@@ -1,0 +1,336 @@
+package n4;
+
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes3.dex */
+public class m extends y4.a {
+    public static final j0 k;
+    public final List f;
+    public final Bundle g;
+    public int h;
+    public final a i;
+    public static final String[] j = {"none", "String", "int", "double", "ISO-8601 date String", "Time in milliseconds as long"};
+    public static final Parcelable.Creator CREATOR = new k0();
+
+    public class a {
+        public a() {
+        }
+    }
+
+    static {
+        j0 j0Var = new j0();
+        j0Var.b("com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime", 4);
+        j0Var.b("com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate", 4);
+        j0Var.b("com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate", 4);
+        j0Var.b("com.google.android.gms.cast.metadata.TITLE", "title", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.SUBTITLE", "subtitle", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.ARTIST", "artist", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.COMPOSER", "composer", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.SEASON_NUMBER", "season", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.STUDIO", "studio", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.WIDTH", "width", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.HEIGHT", "height", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.LOCATION_NAME", "location", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude", 3);
+        j0Var.b("com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude", 3);
+        j0Var.b("com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration", 5);
+        j0Var.b("com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia", 5);
+        j0Var.b("com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime", 5);
+        j0Var.b("com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer", 5);
+        j0Var.b("com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle", 1);
+        j0Var.b("com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber", 2);
+        j0Var.b("com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle", 1);
+        k = j0Var;
+    }
+
+    public m() {
+        this(0);
+    }
+
+    public static void N(String str, int i) {
+        if (TextUtils.isEmpty(str)) {
+            throw new IllegalArgumentException("null and empty keys are not allowed");
+        }
+        int a2 = k.a(str);
+        if (a2 == i || a2 == 0) {
+            return;
+        }
+        throw new IllegalArgumentException("Value for " + str + " must be a " + j[i]);
+    }
+
+    public List H() {
+        return this.f;
+    }
+
+    public int I() {
+        return this.h;
+    }
+
+    public String J(String str) {
+        N(str, 1);
+        return this.g.getString(str);
+    }
+
+    public long K(String str) {
+        N(str, 5);
+        return this.g.getLong(str);
+    }
+
+    public boolean L() {
+        List list = this.f;
+        return (list == null || list.isEmpty()) ? false : true;
+    }
+
+    public void M(String str, String str2) {
+        N(str, 1);
+        this.g.putString(str, str2);
+    }
+
+    public final JSONObject O() {
+        j0 j0Var;
+        String c;
+        double d;
+        JSONObject jSONObject = new JSONObject();
+        try {
+            jSONObject.put("metadataType", this.h);
+        } catch (JSONException unused) {
+        }
+        JSONArray b = u4.b.b(this.f);
+        if (b.length() != 0) {
+            try {
+                jSONObject.put("images", b);
+            } catch (JSONException unused2) {
+            }
+        }
+        ArrayList<String> arrayList = new ArrayList();
+        int i = this.h;
+        if (i == 0) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE"});
+        } else if (i == 1) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.STUDIO", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE"});
+        } else if (i == 2) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.SERIES_TITLE", "com.google.android.gms.cast.metadata.SEASON_NUMBER", "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "com.google.android.gms.cast.metadata.BROADCAST_DATE"});
+        } else if (i == 3) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.ALBUM_TITLE", "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "com.google.android.gms.cast.metadata.COMPOSER", "com.google.android.gms.cast.metadata.TRACK_NUMBER", "com.google.android.gms.cast.metadata.DISC_NUMBER", "com.google.android.gms.cast.metadata.RELEASE_DATE"});
+        } else if (i == 4) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.LOCATION_NAME", "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "com.google.android.gms.cast.metadata.WIDTH", "com.google.android.gms.cast.metadata.HEIGHT", "com.google.android.gms.cast.metadata.CREATION_DATE"});
+        } else if (i == 5) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.CHAPTER_TITLE", "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.BOOK_TITLE", "com.google.android.gms.cast.metadata.SUBTITLE"});
+        }
+        Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.SECTION_DURATION", "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID"});
+        try {
+            for (String str : arrayList) {
+                if (str != null && this.g.containsKey(str) && (c = (j0Var = k).c(str)) != null) {
+                    int a2 = j0Var.a(str);
+                    if (a2 != 1) {
+                        if (a2 != 2) {
+                            if (a2 == 3) {
+                                d = this.g.getDouble(str);
+                            } else if (a2 != 4) {
+                                if (a2 == 5) {
+                                    d = t4.a.b(this.g.getLong(str));
+                                }
+                            }
+                            jSONObject.put(c, d);
+                        } else {
+                            jSONObject.put(c, this.g.getInt(str));
+                        }
+                    }
+                    jSONObject.put(c, this.g.getString(str));
+                }
+            }
+            for (String str2 : this.g.keySet()) {
+                if (!str2.startsWith("com.google.")) {
+                    Object obj = this.g.get(str2);
+                    if ((obj instanceof String) || (obj instanceof Integer) || (obj instanceof Double)) {
+                        jSONObject.put(str2, obj);
+                    }
+                }
+            }
+        } catch (JSONException unused3) {
+        }
+        return jSONObject;
+    }
+
+    public final void P(JSONObject jSONObject) {
+        String str;
+        Bundle bundle;
+        clear();
+        this.h = 0;
+        try {
+            this.h = jSONObject.getInt("metadataType");
+        } catch (JSONException unused) {
+        }
+        JSONArray optJSONArray = jSONObject.optJSONArray("images");
+        if (optJSONArray != null) {
+            u4.b.c(this.f, optJSONArray);
+        }
+        ArrayList arrayList = new ArrayList();
+        int i = this.h;
+        if (i == 0) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE"});
+        } else if (i == 1) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.STUDIO", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE"});
+        } else if (i == 2) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.SERIES_TITLE", "com.google.android.gms.cast.metadata.SEASON_NUMBER", "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "com.google.android.gms.cast.metadata.BROADCAST_DATE"});
+        } else if (i == 3) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ALBUM_TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "com.google.android.gms.cast.metadata.COMPOSER", "com.google.android.gms.cast.metadata.TRACK_NUMBER", "com.google.android.gms.cast.metadata.DISC_NUMBER", "com.google.android.gms.cast.metadata.RELEASE_DATE"});
+        } else if (i == 4) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.LOCATION_NAME", "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "com.google.android.gms.cast.metadata.WIDTH", "com.google.android.gms.cast.metadata.HEIGHT", "com.google.android.gms.cast.metadata.CREATION_DATE"});
+        } else if (i == 5) {
+            Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.CHAPTER_TITLE", "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.BOOK_TITLE", "com.google.android.gms.cast.metadata.SUBTITLE"});
+        }
+        Collections.addAll(arrayList, new String[]{"com.google.android.gms.cast.metadata.SECTION_DURATION", "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID"});
+        HashSet hashSet = new HashSet(arrayList);
+        try {
+            Iterator keys = jSONObject.keys();
+            while (keys.hasNext()) {
+                String str2 = (String) keys.next();
+                if (str2 != null && !"metadataType".equals(str2)) {
+                    j0 j0Var = k;
+                    String d = j0Var.d(str2);
+                    if (d == null) {
+                        Object obj = jSONObject.get(str2);
+                        if (obj instanceof String) {
+                            this.g.putString(str2, (String) obj);
+                        } else if (obj instanceof Integer) {
+                            this.g.putInt(str2, ((Integer) obj).intValue());
+                        } else if (obj instanceof Double) {
+                            this.g.putDouble(str2, ((Double) obj).doubleValue());
+                        }
+                    } else if (hashSet.contains(d)) {
+                        try {
+                            Object obj2 = jSONObject.get(str2);
+                            if (obj2 != null) {
+                                int a2 = j0Var.a(d);
+                                if (a2 != 1) {
+                                    if (a2 != 2) {
+                                        if (a2 == 3) {
+                                            double optDouble = jSONObject.optDouble(str2);
+                                            if (!Double.isNaN(optDouble)) {
+                                                this.g.putDouble(d, optDouble);
+                                            }
+                                        } else if (a2 != 4) {
+                                            if (a2 == 5) {
+                                                this.g.putLong(d, t4.a.e(jSONObject.optLong(str2)));
+                                            }
+                                        } else if (obj2 instanceof String) {
+                                            str = (String) obj2;
+                                            if (u4.b.a(str) != null) {
+                                                bundle = this.g;
+                                                bundle.putString(d, str);
+                                            }
+                                        }
+                                    } else if (obj2 instanceof Integer) {
+                                        this.g.putInt(d, ((Integer) obj2).intValue());
+                                    }
+                                } else if (obj2 instanceof String) {
+                                    bundle = this.g;
+                                    str = (String) obj2;
+                                    bundle.putString(d, str);
+                                }
+                            }
+                        } catch (JSONException unused2) {
+                        }
+                    }
+                }
+            }
+        } catch (JSONException unused3) {
+        }
+    }
+
+    public final boolean Q(Bundle bundle, Bundle bundle2) {
+        if (bundle.size() != bundle2.size()) {
+            return false;
+        }
+        for (String str : bundle.keySet()) {
+            Object obj = bundle.get(str);
+            Object obj2 = bundle2.get(str);
+            if ((obj instanceof Bundle) && (obj2 instanceof Bundle) && !Q((Bundle) obj, (Bundle) obj2)) {
+                return false;
+            }
+            if (obj == null) {
+                if (obj2 != null || !bundle2.containsKey(str)) {
+                    return false;
+                }
+            } else if (!obj.equals(obj2)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void c(x4.a aVar) {
+        this.f.add(aVar);
+    }
+
+    public void clear() {
+        this.g.clear();
+        this.f.clear();
+    }
+
+    public boolean e(String str) {
+        return this.g.containsKey(str);
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof m)) {
+            return false;
+        }
+        m mVar = (m) obj;
+        return Q(this.g, mVar.g) && this.f.equals(mVar.f);
+    }
+
+    public int hashCode() {
+        Bundle bundle = this.g;
+        int i = 17;
+        if (bundle != null) {
+            Iterator it = bundle.keySet().iterator();
+            while (it.hasNext()) {
+                Object obj = this.g.get((String) it.next());
+                i = (i * 31) + (obj != null ? obj.hashCode() : 0);
+            }
+        }
+        return (i * 31) + this.f.hashCode();
+    }
+
+    public void writeToParcel(Parcel parcel, int i) {
+        int a2 = y4.c.a(parcel);
+        y4.c.x(parcel, 2, H(), false);
+        y4.c.e(parcel, 3, this.g, false);
+        y4.c.l(parcel, 4, I());
+        y4.c.b(parcel, a2);
+    }
+
+    public m(int i) {
+        this(new ArrayList(), new Bundle(), i);
+    }
+
+    public m(List list, Bundle bundle, int i) {
+        this.i = new a();
+        this.f = list;
+        this.g = bundle;
+        this.h = i;
+    }
+}

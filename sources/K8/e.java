@@ -1,0 +1,10 @@
+package k8;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+public final class e {
+    public static final e a = new e();
+
+    public static final d a() {
+        return new d(1, 7, 10);
+    }
+}

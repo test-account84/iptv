@@ -1,0 +1,33 @@
+package m6;
+
+import m6.b;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes3.dex */
+public abstract class f {
+
+    public static abstract class a {
+        public abstract f a();
+
+        public abstract a b(b bVar);
+
+        public abstract a c(String str);
+
+        public abstract a d(long j);
+    }
+
+    public enum b {
+        OK,
+        BAD_CONFIG,
+        AUTH_ERROR
+    }
+
+    public static a a() {
+        return new b.b().d(0L);
+    }
+
+    public abstract b b();
+
+    public abstract String c();
+
+    public abstract long d();
+}

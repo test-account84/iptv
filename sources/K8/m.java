@@ -1,0 +1,8 @@
+package k8;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+public abstract class m {
+    public static final i a(Object obj, Object obj2) {
+        return new i(obj, obj2);
+    }
+}

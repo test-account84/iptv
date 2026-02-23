@@ -1,0 +1,6 @@
+package com.amplifyframework.api.graphql;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes.dex */
+public interface Operation {
+    OperationType getOperationType();
+}

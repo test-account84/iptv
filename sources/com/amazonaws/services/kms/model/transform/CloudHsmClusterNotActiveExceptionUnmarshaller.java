@@ -1,0 +1,23 @@
+package com.amazonaws.services.kms.model.transform;
+
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.http.JsonErrorResponseHandler;
+import com.amazonaws.services.kms.model.CloudHsmClusterNotActiveException;
+import com.amazonaws.transform.JsonErrorUnmarshaller;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes.dex */
+public class CloudHsmClusterNotActiveExceptionUnmarshaller extends JsonErrorUnmarshaller {
+    public CloudHsmClusterNotActiveExceptionUnmarshaller() {
+        super(CloudHsmClusterNotActiveException.class);
+    }
+
+    public boolean match(JsonErrorResponseHandler.JsonErrorResponse jsonErrorResponse) throws Exception {
+        return jsonErrorResponse.getErrorCode().equals("CloudHsmClusterNotActiveException");
+    }
+
+    public AmazonServiceException unmarshall(JsonErrorResponseHandler.JsonErrorResponse jsonErrorResponse) throws Exception {
+        CloudHsmClusterNotActiveException cloudHsmClusterNotActiveException = (CloudHsmClusterNotActiveException) super.unmarshall(jsonErrorResponse);
+        cloudHsmClusterNotActiveException.setErrorCode("CloudHsmClusterNotActiveException");
+        return cloudHsmClusterNotActiveException;
+    }
+}

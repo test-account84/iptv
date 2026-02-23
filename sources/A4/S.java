@@ -1,0 +1,54 @@
+package a4;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes3.dex */
+public abstract class s {
+    public static int A = 2131428021;
+    public static int B = 2131428022;
+    public static int C = 2131428023;
+    public static int D = 2131428024;
+    public static int E = 2131428025;
+    public static int F = 2131428026;
+    public static int G = 2131428027;
+    public static int H = 2131428028;
+    public static int I = 2131428029;
+    public static int J = 2131428030;
+    public static int K = 2131428031;
+    public static int L = 2131428032;
+    public static int M = 2131428033;
+    public static int N = 2131428035;
+    public static int O = 2131428036;
+    public static int P = 2131428037;
+    public static int Q = 2131428038;
+    public static int R = 2131428039;
+    public static int S = 2131428040;
+    public static int T = 2131428041;
+    public static int U = 2131428042;
+    public static int V = 2131428043;
+    public static int W = 2131429659;
+    public static int a = 2131427991;
+    public static int b = 2131427992;
+    public static int c = 2131427993;
+    public static int d = 2131427994;
+    public static int e = 2131427995;
+    public static int f = 2131427996;
+    public static int g = 2131427997;
+    public static int h = 2131427998;
+    public static int i = 2131427999;
+    public static int j = 2131428000;
+    public static int k = 2131428001;
+    public static int l = 2131428002;
+    public static int m = 2131428005;
+    public static int n = 2131428006;
+    public static int o = 2131428007;
+    public static int p = 2131428008;
+    public static int q = 2131428009;
+    public static int r = 2131428010;
+    public static int s = 2131428011;
+    public static int t = 2131428012;
+    public static int u = 2131428014;
+    public static int v = 2131428015;
+    public static int w = 2131428016;
+    public static int x = 2131428018;
+    public static int y = 2131428019;
+    public static int z = 2131428020;
+}

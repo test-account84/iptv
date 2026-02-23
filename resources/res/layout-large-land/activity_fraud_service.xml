@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/dashboard_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="locale">
+    <include layout="@layout/appbar_common"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layoutDirection="locale"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+        <TextView
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:id="@+id/tv_no_active_services"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:text="@string/no_fraud_services"
+            android:fontFamily="@string/font_family_medium"
+            android:textDirection="locale"
+            android:layoutDirection="locale"/>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_gravity="center"
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutDirection="locale"
+            app:SpinKit_Color="@color/white"
+            style="@style/SpinKitView.Large.FadingCircle"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="locale"/>
+    </LinearLayout>
+</LinearLayout>

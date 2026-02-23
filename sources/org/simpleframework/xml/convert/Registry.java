@@ -1,0 +1,37 @@
+package org.simpleframework.xml.convert;
+
+import org.simpleframework.xml.util.Cache;
+import org.simpleframework.xml.util.ConcurrentCache;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+public class Registry {
+    private final Cache cache = new ConcurrentCache();
+    private final RegistryBinder binder = new RegistryBinder();
+
+    private Converter create(Class cls) throws Exception {
+        Converter lookup = this.binder.lookup(cls);
+        if (lookup != null) {
+            this.cache.cache(cls, lookup);
+        }
+        return lookup;
+    }
+
+    public Registry bind(Class cls, Class cls2) throws Exception {
+        if (cls != null) {
+            this.binder.bind(cls, cls2);
+        }
+        return this;
+    }
+
+    public Converter lookup(Class cls) throws Exception {
+        Converter converter = (Converter) this.cache.fetch(cls);
+        return converter == null ? create(cls) : converter;
+    }
+
+    public Registry bind(Class cls, Converter converter) throws Exception {
+        if (cls != null) {
+            this.cache.cache(cls, converter);
+        }
+        return this;
+    }
+}

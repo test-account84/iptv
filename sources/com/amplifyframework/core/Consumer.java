@@ -1,0 +1,6 @@
+package com.amplifyframework.core;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes.dex */
+public interface Consumer {
+    void accept(Object obj);
+}

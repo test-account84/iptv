@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp">
+    <TextView
+        android:textSize="13dp"
+        android:textColor="@color/black"
+        android:id="@+id/tv_tab_service_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active"
+        android:layout_centerInParent="true"
+        android:fontFamily="@string/font_family_regular"/>
+</RelativeLayout>

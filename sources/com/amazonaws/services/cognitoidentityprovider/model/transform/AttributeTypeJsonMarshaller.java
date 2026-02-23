@@ -1,0 +1,31 @@
+package com.amazonaws.services.cognitoidentityprovider.model.transform;
+
+import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
+import com.amazonaws.util.json.AwsJsonWriter;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes.dex */
+class AttributeTypeJsonMarshaller {
+    private static AttributeTypeJsonMarshaller instance;
+
+    public static AttributeTypeJsonMarshaller getInstance() {
+        if (instance == null) {
+            instance = new AttributeTypeJsonMarshaller();
+        }
+        return instance;
+    }
+
+    public void marshall(AttributeType attributeType, AwsJsonWriter awsJsonWriter) throws Exception {
+        awsJsonWriter.beginObject();
+        if (attributeType.getName() != null) {
+            String name = attributeType.getName();
+            awsJsonWriter.name("Name");
+            awsJsonWriter.value(name);
+        }
+        if (attributeType.getValue() != null) {
+            String value = attributeType.getValue();
+            awsJsonWriter.name("Value");
+            awsJsonWriter.value(value);
+        }
+        awsJsonWriter.endObject();
+    }
+}

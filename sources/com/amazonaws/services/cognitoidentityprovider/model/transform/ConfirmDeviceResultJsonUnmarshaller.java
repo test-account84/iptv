@@ -1,0 +1,34 @@
+package com.amazonaws.services.cognitoidentityprovider.model.transform;
+
+import com.amazonaws.services.cognitoidentityprovider.model.ConfirmDeviceResult;
+import com.amazonaws.transform.JsonUnmarshallerContext;
+import com.amazonaws.transform.SimpleTypeJsonUnmarshallers;
+import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.util.json.AwsJsonReader;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes.dex */
+public class ConfirmDeviceResultJsonUnmarshaller implements Unmarshaller {
+    private static ConfirmDeviceResultJsonUnmarshaller instance;
+
+    public static ConfirmDeviceResultJsonUnmarshaller getInstance() {
+        if (instance == null) {
+            instance = new ConfirmDeviceResultJsonUnmarshaller();
+        }
+        return instance;
+    }
+
+    public ConfirmDeviceResult unmarshall(JsonUnmarshallerContext jsonUnmarshallerContext) throws Exception {
+        ConfirmDeviceResult confirmDeviceResult = new ConfirmDeviceResult();
+        AwsJsonReader reader = jsonUnmarshallerContext.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            if (reader.nextName().equals("UserConfirmationNecessary")) {
+                confirmDeviceResult.setUserConfirmationNecessary(SimpleTypeJsonUnmarshallers.BooleanJsonUnmarshaller.getInstance().unmarshall(jsonUnmarshallerContext));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+        return confirmDeviceResult;
+    }
+}

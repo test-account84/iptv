@@ -1,0 +1,112 @@
+package org.simpleframework.xml.core;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+class AnnotationHandler implements InvocationHandler {
+    private static final String ATTRIBUTE = "attribute";
+    private static final String CLASS = "annotationType";
+    private static final String EQUAL = "equals";
+    private static final String REQUIRED = "required";
+    private static final String STRING = "toString";
+    private final boolean attribute;
+    private final Comparer comparer;
+    private final boolean required;
+    private final Class type;
+
+    public AnnotationHandler(Class cls) {
+        this(cls, true);
+    }
+
+    private void attributes(StringBuilder sb) {
+        Method[] declaredMethods = this.type.getDeclaredMethods();
+        for (int i = 0; i < declaredMethods.length; i++) {
+            String name = declaredMethods[i].getName();
+            Object value = value(declaredMethods[i]);
+            if (i > 0) {
+                sb.append(',');
+                sb.append(' ');
+            }
+            sb.append(name);
+            sb.append('=');
+            sb.append(value);
+        }
+        sb.append(')');
+    }
+
+    private boolean equals(Object obj, Object[] objArr) throws Throwable {
+        Annotation annotation = (Annotation) obj;
+        Annotation annotation2 = (Annotation) objArr[0];
+        if (annotation.annotationType() == annotation2.annotationType()) {
+            return this.comparer.equals(annotation, annotation2);
+        }
+        throw new PersistenceException("Annotation %s is not the same as %s", annotation, annotation2);
+    }
+
+    private void name(StringBuilder sb) {
+        String name = this.type.getName();
+        sb.append('@');
+        sb.append(name);
+        sb.append('(');
+    }
+
+    private Object value(Method method) {
+        boolean z;
+        String name = method.getName();
+        if (name.equals("required")) {
+            z = this.required;
+        } else {
+            if (!name.equals("attribute")) {
+                return method.getDefaultValue();
+            }
+            z = this.attribute;
+        }
+        return Boolean.valueOf(z);
+    }
+
+    public Object invoke(Object obj, Method method, Object[] objArr) throws Throwable {
+        boolean z;
+        String name = method.getName();
+        if (name.equals("toString")) {
+            return toString();
+        }
+        if (name.equals("equals")) {
+            z = equals(obj, objArr);
+        } else {
+            if (name.equals("annotationType")) {
+                return this.type;
+            }
+            if (name.equals("required")) {
+                z = this.required;
+            } else {
+                if (!name.equals("attribute")) {
+                    return method.getDefaultValue();
+                }
+                z = this.attribute;
+            }
+        }
+        return Boolean.valueOf(z);
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (this.type != null) {
+            name(sb);
+            attributes(sb);
+        }
+        return sb.toString();
+    }
+
+    public AnnotationHandler(Class cls, boolean z) {
+        this(cls, z, false);
+    }
+
+    public AnnotationHandler(Class cls, boolean z, boolean z2) {
+        this.comparer = new Comparer();
+        this.attribute = z2;
+        this.required = z;
+        this.type = cls;
+    }
+}

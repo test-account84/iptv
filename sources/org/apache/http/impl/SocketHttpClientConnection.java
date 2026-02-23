@@ -1,0 +1,158 @@
+package org.apache.http.impl;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+import org.apache.http.HttpInetConnection;
+import org.apache.http.impl.io.SocketInputBuffer;
+import org.apache.http.impl.io.SocketOutputBuffer;
+import org.apache.http.io.SessionInputBuffer;
+import org.apache.http.io.SessionOutputBuffer;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.Args;
+import org.apache.http.util.Asserts;
+
+@Deprecated
+/* loaded from: /storage/emulated/0/Android/data/com.apktools.app.decompile/files/decompile_temp/jadx/classes4.dex */
+public class SocketHttpClientConnection extends AbstractHttpClientConnection implements HttpInetConnection {
+    private volatile boolean open;
+    private volatile Socket socket = null;
+
+    private static void formatAddress(StringBuilder sb, SocketAddress socketAddress) {
+        if (!(socketAddress instanceof InetSocketAddress)) {
+            sb.append(socketAddress);
+            return;
+        }
+        InetSocketAddress inetSocketAddress = (InetSocketAddress) socketAddress;
+        sb.append(inetSocketAddress.getAddress() != null ? inetSocketAddress.getAddress().getHostAddress() : inetSocketAddress.getAddress());
+        sb.append(':');
+        sb.append(inetSocketAddress.getPort());
+    }
+
+    public void assertNotOpen() {
+        Asserts.check(!this.open, "Connection is already open");
+    }
+
+    public void assertOpen() {
+        Asserts.check(this.open, "Connection is not open");
+    }
+
+    public void bind(Socket socket, HttpParams httpParams) throws IOException {
+        Args.notNull(socket, "Socket");
+        Args.notNull(httpParams, "HTTP parameters");
+        this.socket = socket;
+        int intParameter = httpParams.getIntParameter("http.socket.buffer-size", -1);
+        init(createSessionInputBuffer(socket, intParameter, httpParams), createSessionOutputBuffer(socket, intParameter, httpParams), httpParams);
+        this.open = true;
+    }
+
+    public void close() throws IOException {
+        if (this.open) {
+            this.open = false;
+            Socket socket = this.socket;
+            try {
+                doFlush();
+                try {
+                    try {
+                        socket.shutdownOutput();
+                    } catch (UnsupportedOperationException | IOException unused) {
+                    }
+                } catch (IOException unused2) {
+                }
+                socket.shutdownInput();
+            } finally {
+                socket.close();
+            }
+        }
+    }
+
+    public SessionInputBuffer createSessionInputBuffer(Socket socket, int i, HttpParams httpParams) throws IOException {
+        return new SocketInputBuffer(socket, i, httpParams);
+    }
+
+    public SessionOutputBuffer createSessionOutputBuffer(Socket socket, int i, HttpParams httpParams) throws IOException {
+        return new SocketOutputBuffer(socket, i, httpParams);
+    }
+
+    public InetAddress getLocalAddress() {
+        if (this.socket != null) {
+            return this.socket.getLocalAddress();
+        }
+        return null;
+    }
+
+    public int getLocalPort() {
+        if (this.socket != null) {
+            return this.socket.getLocalPort();
+        }
+        return -1;
+    }
+
+    public InetAddress getRemoteAddress() {
+        if (this.socket != null) {
+            return this.socket.getInetAddress();
+        }
+        return null;
+    }
+
+    public int getRemotePort() {
+        if (this.socket != null) {
+            return this.socket.getPort();
+        }
+        return -1;
+    }
+
+    public Socket getSocket() {
+        return this.socket;
+    }
+
+    public int getSocketTimeout() {
+        if (this.socket != null) {
+            try {
+                return this.socket.getSoTimeout();
+            } catch (SocketException unused) {
+            }
+        }
+        return -1;
+    }
+
+    public boolean isOpen() {
+        return this.open;
+    }
+
+    public void setSocketTimeout(int i) {
+        assertOpen();
+        if (this.socket != null) {
+            try {
+                this.socket.setSoTimeout(i);
+            } catch (SocketException unused) {
+            }
+        }
+    }
+
+    public void shutdown() throws IOException {
+        this.open = false;
+        Socket socket = this.socket;
+        if (socket != null) {
+            socket.close();
+        }
+    }
+
+    public String toString() {
+        if (this.socket == null) {
+            return super.toString();
+        }
+        StringBuilder sb = new StringBuilder();
+        SocketAddress remoteSocketAddress = this.socket.getRemoteSocketAddress();
+        SocketAddress localSocketAddress = this.socket.getLocalSocketAddress();
+        if (remoteSocketAddress != null && localSocketAddress != null) {
+            formatAddress(sb, localSocketAddress);
+            sb.append("<->");
+            formatAddress(sb, remoteSocketAddress);
+        }
+        return sb.toString();
+    }
+}
